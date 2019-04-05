@@ -17,7 +17,7 @@ import pickle
 import random
 import time
 
-import visualize
+import examples.openai_lander.visualize as visualize
 
 NUM_CORES = 8
 
