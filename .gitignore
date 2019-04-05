@@ -19,3 +19,8 @@ venv/
 
 # PyCharm env
 .idea/
+
+# LunarLander
+examples/openai_lander/fitness.svg
+examples/openai_lander/results/
+examples/openai_lander/scores.svg
