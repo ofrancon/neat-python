@@ -4,11 +4,13 @@
 
 from __future__ import print_function
 
-import gym
+# import gym
+
+import matplotlib
+matplotlib.use("TkAgg")
+from matplotlib import pyplot as plt
+
 import gym.wrappers
-
-import matplotlib.pyplot as plt
-
 import multiprocessing
 import neat
 import numpy as np
