@@ -24,3 +24,6 @@ venv/
 examples/openai_lander/fitness.svg
 examples/openai_lander/results/
 examples/openai_lander/scores.svg
+
+# FlappyBird
+examples/flappy/trained_agents/
