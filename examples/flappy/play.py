@@ -1,6 +1,9 @@
+import argparse
+import neat
 import numpy as np
+import pickle
 
-from examples.flappy.naive_agent import NaiveAgent
+from examples.flappy.neat_agent import NeatAgent
 from ple.games.flappybird import FlappyBird
 from ple import PLE
 
@@ -15,9 +18,17 @@ def load_game(display_screen=False):
     return p
 
 
-def load_agent(game):
+def load_agent(filename, game):
     # The agent
-    agent = NaiveAgent(actions=game.getActionSet())
+    config = neat.Config(
+        neat.DefaultGenome,
+        neat.DefaultReproduction,
+        neat.DefaultSpeciesSet,
+        neat.DefaultStagnation,
+        'config'
+    )
+    genome = pickle.load(open(filename, 'rb'))
+    agent = NeatAgent(genome, config, actions=game.getActionSet())
     return agent
 
 
@@ -66,11 +77,14 @@ def play(ple, agent, verbose=False):
     return total_score
 
 
-def run():
+def run(filename):
     game = load_game(display_screen=True)
-    agent = load_agent(game)
+    agent = load_agent(filename, game)
     play(game, agent, verbose=True)
 
 
 if __name__ == '__main__':
-    run()
+    parser = argparse.ArgumentParser()
+    parser.add_argument("filename", help="A .pkl file containing a persisted candidate")
+    args = parser.parse_args()
+    run(args.filename)
