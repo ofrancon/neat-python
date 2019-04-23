@@ -9,6 +9,7 @@ from examples.flappy.neat_agent import NeatAgent
 from examples.flappy.play import play
 
 train_timestamp = time.strftime("%Y%m%d-%H%M%S")
+NB_GENERATIONS = 1000
 
 
 def train():
@@ -21,7 +22,7 @@ def train():
     )
     population = neat.Population(config)
     population.add_reporter(neat.StdOutReporter(True))
-    winner = population.run(eval_candidates, n=50)
+    winner = population.run(eval_candidates, n=NB_GENERATIONS)
     print("Best genome's fitness: {}".format(winner.fitness))
     # pickle.dump(winner, open('winner.pkl', 'wb'))
 
